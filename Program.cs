@@ -13,4 +13,5 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-app.Run("http://localhost:5000");
+builder.WebHost.UseUrls("http://0.0.0.0:5000");
+app.Run("http://0.0.0.0:5000");
