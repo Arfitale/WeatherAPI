@@ -1,10 +1,12 @@
 using DotNetEnv;
+using WeatherApi.Services;
 
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddHttpClient<IWeatherService, VisualCrossingWeatherService>();
 
 var app = builder.Build();
 
