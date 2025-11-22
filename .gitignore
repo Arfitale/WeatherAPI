@@ -1,0 +1,70 @@
+## ===== Build results =====
+bin/
+obj/
+out/
+
+## ===== User-specific files =====
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## ===== Visual Studio =====
+.vs/
+.vscode/
+
+## ===== Rider / JetBrains =====
+.idea/
+*.sln.iml
+
+## ===== .NET Core =====
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+## ===== NuGet =====
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+
+## ===== Logs =====
+*.log
+
+## ===== OS files =====
+Thumbs.db
+.DS_Store
+desktop.ini
+
+## ===== Test results =====
+TestResults/
+
+## ===== Resharper =====
+_ReSharper*/
+*.DotSettings.user
+
+## ===== ASP.NET Scaffolding =====
+ScaffoldingReadMe.txt
+
+## ===== Publish output =====
+publish/
+
+## ===== Environment files =====
+.env
+.env.local
+.env.development
+.env.production
+
+## ===== Backup files =====
+*.bak
+*.tmp
+*.temp
+
+## ===== SQLite =====
+*.db
+*.sqlite
+
+## ===== Coverage =====
+coverage/
+*.coverage
+*.coveragexml
