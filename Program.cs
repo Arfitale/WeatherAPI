@@ -10,6 +10,15 @@ builder.Services.AddHttpClient<IWeatherService, VisualCrossingWeatherService>();
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else if (app.Environment.IsProduction())
+{
+    app.UseMiddleware<ApiKeyMiddleware>();
+}
+
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
