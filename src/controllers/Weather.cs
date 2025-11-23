@@ -2,10 +2,12 @@ namespace WeatherApi.Controllers;
 
 using DotNetEnv;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using WeatherApi.Models;
 using WeatherApi.Services;
 
 [ApiController]
+[EnableRateLimiting("global")]
 [Route("api/[controller]")]
 public class WeatherController(IWeatherService weatherService) : ControllerBase
 {
