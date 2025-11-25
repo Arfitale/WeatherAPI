@@ -1,6 +1,6 @@
 namespace WeatherApi.Controllers;
 
-using DotNetEnv;
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using WeatherApi.Models;
@@ -18,7 +18,23 @@ public class WeatherController(IWeatherService weatherService) : ControllerBase
     {
         try
         {
+            var cacheKey = $"weather_:{location.ToLower()}";
+            var redis = new Redis();
+            var cachedData = await redis.GetCacheValueAsync(cacheKey);
+
+            if (cachedData != null)
+            {
+                Console.WriteLine($"Returning cached weather data for location: {location}");
+                var data = JsonSerializer.Deserialize<WeatherResponse>(cachedData!);
+                return Ok(data);
+            }
+
             var weather = await _weatherService.GetWeatherAsync(location);
+
+            var serializedData = JsonSerializer.Serialize(weather);
+            Console.WriteLine("Storing weather data in cache.");
+            await redis.SetCacheValueAsync(cacheKey, serializedData, TimeSpan.FromMinutes(10));
+
             Console.WriteLine($"Returning weather data for location: {location}");
             return Ok(weather);
         }
